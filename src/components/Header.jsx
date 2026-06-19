@@ -1,4 +1,11 @@
+import { useContext } from "react";
+import CartContext from "../store/CartContext";
+
 export default function Header(){
+  const {items} = useContext(CartContext);
+  const totalItems = items.reduce((totalNumberOfItems, item) => {
+    return totalNumberOfItems + item.quantity;
+  }, 0)
    return (
     <header className="bg-stone-900 border-b-2 border-teal-400 sticky top-0 z-50 px-[10%] py-5 shadow-lg">
       <div className="flex items-center justify-between">
@@ -22,7 +29,7 @@ export default function Header(){
           >
             {/* The Text content shifts from simple white underline to dynamic glow teal */}
             <h2 className="text-white underline group-hover:text-teal-400 group-hover:no-underline transition-all duration-300 font-medium tracking-wide">
-              Cart (0)
+              Cart ({totalItems})
             </h2>
           </button>
         </nav>

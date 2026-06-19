@@ -1,4 +1,11 @@
+import { useContext } from "react";
+import CartContext from "../store/CartContext";
+
 export default function MealItem({ meal }) {
+  const { addItem } = useContext(CartContext);
+  function handleAddToCart(){
+    addItem(meal);
+  }
   const imageSrc = `http://localhost:8080/${meal.image}`;
   return (
     <li className="flex list-none">
@@ -35,6 +42,7 @@ export default function MealItem({ meal }) {
         <div className="mt-auto">
           <button
             className="w-full bg-teal-400 hover:bg-teal-300 text-stone-950 font-black tracking-wider uppercase py-3 px-4 rounded-xl transition-all duration-200 active:scale-95 text-center text-sm shadow-md hover:shadow-teal-400/20 cursor-pointer"
+            onClick={handleAddToCart}
           >
             Add to Cart
           </button>
