@@ -12,7 +12,7 @@ The project is specifically architected to demonstrate mastery of complex React 
 
 ---
 
-## 🚀 Key Architectural Highlights (What Hiring Managers Will Love)
+## 🚀 Key Architectural Highlights
 
 ### 1. Modern React 19 Reactivity & Compiler
 * **Zero-Manual-Memoization:** The application utilizes the new **React Compiler** (`babel-plugin-react-compiler`), which analyzes the dependency graph and automatically applies optimization (memoizing component trees and value allocations) without the visual clutter of `useMemo` or excessive `useCallback`.
