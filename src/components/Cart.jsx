@@ -15,7 +15,7 @@ export default function Cart(){
         showCheckout();
     }
     return (
-    <Modal className="max-w-md" open={progress === 'cart'}>
+    <Modal className="max-w-md" open={progress === 'cart'} onClose={handleCloseCart}>
         <div className="border-b border-stone-800 pb-4 mb-4 flex justify-between items-center">
             <h2 className="text-2xl font-black uppercase tracking-wider text-teal-200">Your Cart</h2>
             <span className="bg-stone-800 text-teal-400 border border-teal-500/20 text-xs font-bold px-2.5 py-1 rounded-md">
