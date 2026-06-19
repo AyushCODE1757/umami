@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useActionState } from "react";
 import Modal from "./Modal";
 import CartContext from "../store/CartContext.jsx";
 import Input from "./Input.jsx";
@@ -19,7 +19,6 @@ export default function Checkout() {
   // Balanced hook state mapping using errorState from your custom code
   const { 
     data, 
-    isLoading: isSending, 
     errorState, 
     sendRequest,
     clearData
@@ -40,9 +39,7 @@ export default function Checkout() {
     clearData(); // Resets hook data back to null so the form is clean for next time
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    const formData = new FormData(event.target);
+  async function checkoutAction(prevState, formData) {
     const customerData = Object.fromEntries(formData.entries());
 
     const orderPayload = {
@@ -59,8 +56,10 @@ export default function Checkout() {
       }))
     };
 
-    sendRequest(orderPayload);
+    await sendRequest(orderPayload);
   }
+
+  const [formState, formAction, isSending] = useActionState(checkoutAction, null);
 
   // --- RENDERING STRATEGY CONTROLS ---
 
@@ -126,7 +125,7 @@ export default function Checkout() {
   // 4. Default Interactive Checkout Input Form Layout
   return (
     <Modal open={progress === 'checkout'} className="max-w-md" onClose={handleClose}>
-      <form onSubmit={handleSubmit} className="flex flex-col h-full">
+      <form action={formAction} className="flex flex-col h-full">
         
         <div className="border-b border-stone-800 pb-3 mb-5">
           <h2 className="text-2xl font-black uppercase tracking-wider text-teal-200">

@@ -1,4 +1,3 @@
-import React from "react";
 import useHttp from "../hooks/useHttp.js";
 import MealItem from "./MealItem.jsx";
 
